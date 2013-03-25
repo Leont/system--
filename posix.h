@@ -1,7 +1,5 @@
 #include <string>
 #include <memory>
-#include <boost/utility/enable_if.hpp>
-#include <boost/type_traits/is_pod.hpp>
 #include <cstring>
 #include "memory.h"
 
@@ -158,9 +156,9 @@ namespace posix {
 			~set();
 		};
 
-		bool suspend(const set&);
-		int wait(int signo);
-		int wait(const set&);
+		extern bool suspend(const set&);
+		extern int wait(int signo);
+		extern int wait(const set&);
 
 		class _block {
 			class setter {
