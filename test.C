@@ -1,4 +1,4 @@
-//#include "posix.h"
+#include "posix.h"
 #include "event.h"
 #include <iostream>
 #include <unistd.h>
@@ -12,7 +12,7 @@ int main() {
 	signal::set bar = foo;
 
 	try {
-		handler::descriptor tmp = add_reader(0, [](int, epoll::event) { std::cout << "Got it!" << std::endl; });
+		handler::descriptor tmp = add_reader(0, [&](int) { std::cout << "Got it!" << std::endl; });
 		event::wait(1);
 	}
 	catch(const posix::system_exception& ex) {
