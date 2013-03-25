@@ -52,9 +52,14 @@ namespace linux {
 			descriptor::weak fd;
 			friend class signalfd;
 			public:
+			weak(const signalfd& strong) : fd(strong) {
+			}
 		};
+		friend class weak;
 		explicit signalfd(int, bool);
 		explicit signalfd(const signal::set&, bool);
+		signalfd(const weak& other) : fd(other.fd) {
+		}
 		void set_mask(int signo);
 		void set_mask(const signal::set&);
 		int receive() const;
